@@ -1,0 +1,32 @@
+{
+	"ImportPath": "github.com/hubo1016/vlcp-k8s-cni/cni",
+	"GoVersion": "go1.9",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/containernetworking/cni/pkg/skel",
+			"Comment": "v0.7.0-alpha1-38-g47f042a",
+			"Rev": "47f042a96e5334ec00fdb9abe67bd450bf528c67"
+		},
+		{
+			"ImportPath": "github.com/containernetworking/cni/pkg/types",
+			"Comment": "v0.7.0-alpha1-38-g47f042a",
+			"Rev": "47f042a96e5334ec00fdb9abe67bd450bf528c67"
+		},
+		{
+			"ImportPath": "github.com/containernetworking/cni/pkg/types/020",
+			"Comment": "v0.7.0-alpha1-38-g47f042a",
+			"Rev": "47f042a96e5334ec00fdb9abe67bd450bf528c67"
+		},
+		{
+			"ImportPath": "github.com/containernetworking/cni/pkg/types/current",
+			"Comment": "v0.7.0-alpha1-38-g47f042a",
+			"Rev": "47f042a96e5334ec00fdb9abe67bd450bf528c67"
+		},
+		{
+			"ImportPath": "github.com/containernetworking/cni/pkg/version",
+			"Comment": "v0.7.0-alpha1-38-g47f042a",
+			"Rev": "47f042a96e5334ec00fdb9abe67bd450bf528c67"
+		}
+	]
+}
