@@ -1,6 +1,6 @@
 FROM golang:1.10
 
-AUTHOR hubo
+MAINTAINER hubo
 
 ADD /vlcp-k8s-cni /go/src/github.com/hubo1016/vlcp-k8s-cni/
 

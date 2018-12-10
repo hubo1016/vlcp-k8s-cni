@@ -1,6 +1,6 @@
 FROM python:3.6
 
-AUTHOR hubo
+MAINTAINER hubo
 
 ADD /vlcp_k8s /opt/workspace/
 
