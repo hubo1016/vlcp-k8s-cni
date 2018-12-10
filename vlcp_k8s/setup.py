@@ -25,5 +25,6 @@ setup(
         'vlcp_k8s',
     ],
     install_requires = ["vlcp>=2.2.0",
-                        "pyroute2>=0.5.3"],
+                        "pyroute2>=0.5.3",
+                        "nstruct>=1.3.1"],
 )
