@@ -113,7 +113,7 @@ class _CancelContext(object):
 
 
 def _cniapi(path):
-    def _decoractor(f):
+    def _decorator(f):
         @HttpHandler.route(path, method=[b'POST'])
         @functools.wraps(f)
         async def _handler(self, env):
@@ -185,6 +185,7 @@ def _cniapi(path):
             else:
                 env.start_response(200)
                 env.outputjson(r)
+    return _decorator
 
 
 class CNIHandler(HttpHandler):
@@ -194,7 +195,7 @@ class CNIHandler(HttpHandler):
         self._logger = parent._logger
         self._macbase = uint64.create(create_binary(mac_addr_bytes(self._parent.mactemplate), 8))
         self._bridgename = parent.bridgename
-        self._ovsdbhost = parent.ovsdbhost
+        self._ovsdbvhost = parent.ovsdbvhost
         self._logicalnetwork = parent.logicalnetwork
         self._subnet = parent.subnet
         self._mtu = parent.mtu
@@ -205,7 +206,7 @@ class CNIHandler(HttpHandler):
     async def add(self, env, config, container_id, netns, ifname, args, cancelcontext):
         # If connections are not ready, do not start further actions
         await call_api(self, 'ovsdbmanager', 'waitanyconnection',
-                                {"vhost": self._ovsdbhost})
+                                {"vhost": self._ovsdbvhost})
         # 1. Create logical port
         # 2. Create interface in the namespace
         # 3. Attach the interface to OVSDB
@@ -289,7 +290,7 @@ class CNIHandler(HttpHandler):
                         )
                 cleanups.append(_cleanup_veth)
             conns = await call_api(self, 'ovsdbmanager', 'waitanyconnection',
-                                        {"vhost": self._ovsdbhost})
+                                        {"vhost": self._ovsdbvhost})
             c = conns[0]
             # Add interface to OVSDB
             with cancelcontext.suppress():
@@ -421,7 +422,7 @@ class CNIHandler(HttpHandler):
         async def _delete_veth():
             try:
                 conns = await call_api(self, 'ovsdbmanager', 'waitanyconnection',
-                                            {"vhost": self._ovsdbhost})
+                                            {"vhost": self._ovsdbvhost})
                 c = conns[0]
                 result = await _ovsdb_transact(
                                     c,
